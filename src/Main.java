@@ -24,16 +24,27 @@ public class Main {
 //                .map(x -> x.getFullName().toUpperCase())
 //                .forEach(System.out::println);
 
-        int increment1 = incrementNumberDeclarative.apply(1);
+        int increment1 = incrementNumberByOneDeclarative.apply(1);
         System.out.println(increment1);
-        int increment2 = incrementNumberImperative(1);
+        int increment2 = incrementNumberByOneImperative(1);
         System.out.println(increment2);
 
+        //apply
+        System.out.println(NumberBy10.apply(increment1));
+        //addThen
+        Function<Integer, Integer> AddThenFunc = incrementNumberByOneDeclarative.andThen(NumberBy10);
+        System.out.println(AddThenFunc.apply(1));
+
+
+
 
 
     }
-    static Function<Integer,Integer> incrementNumberDeclarative = x -> ++x;
-    static int incrementNumberImperative(int x){
+
+    static Function<Integer,Integer> incrementNumberByOneDeclarative = x -> ++x;
+    static Function<Integer, Integer> NumberBy10 = x -> x * 10;
+    static int incrementNumberByOneImperative(int x){
         return ++x;
     }
+
 }
